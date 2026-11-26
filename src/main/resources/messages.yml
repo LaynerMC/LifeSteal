@@ -1,0 +1,91 @@
+# ============================================================
+#  LifeSteal messages (by laynermc)
+#  Use & color codes and &#RRGGBB hex colors (1.16+).
+#  Any message set to '' is NOT sent.
+#  Placeholders: ${player} ${amount} ${max} ${chance} ${killer} ${killed} ${revived} ${reviving} ${page} ${maxPage}
+# ============================================================
+
+prefix: "&c[LifeSteal]&r "
+
+heart:
+  received: "&a&lYou received an extra heart!"
+  gained: "&a&lYou gained a heart for killing &e${player}&a&l!"
+  lost: "&4&lYou lost a heart."
+  failure: "&4&lYou didn't get an extra heart."
+  check: "&e${player} &7has &c${amount}x &7hearts."
+  check-self: "&7You have &c${amount}x &7hearts."
+  added: "&a&l${amount}x heart(s) were added to you."
+  added-admin: "&a&lYou added &e${amount}x &a&lheart(s) to &e${player}&a&l."
+  removed: "&4&l${amount}x heart(s) were taken from you."
+  removed-admin: "&4&lYou took &e${amount}x &4&lheart(s) from &e${player}&4&l."
+  set: "&f&lYour hearts were set to &e${amount}x&f&l."
+  set-admin: "&f&lYou set &e${player}&f&l's hearts to &e${amount}x&f&l."
+  max-cap: "&c&lYou can't have more than ${max}x hearts."
+  max-cap-dropped: "&c&lYou reached the heart cap. The heart from killing &e${player}&c&l was dropped."
+  max-from-item: "&c&lYou can't get more than ${max}x hearts from this item."
+  withdrawn: "&a&lYou withdrew &e${amount}x &a&lheart(s)."
+
+max-heart:
+  set: "&f&l${player}&f&l's personal max hearts is now &e${amount}x&f&l."
+  set-self: "&f&lYour personal max hearts is now &e${amount}x&f&l."
+  cleared: "&f&l${player}&f&l now uses the global cap."
+
+elimination:
+  no-more: "&c&lYou lost all your hearts and have been eliminated!"
+  broadcast: "&c&l${player} &4&lhas been eliminated!"
+  you-eliminated: "&c&lYou eliminated &e${player}&c&l."
+  player-not-eliminated: "&c&l${player} is not eliminated."
+  already-eliminated: "&c&l${player} is already eliminated."
+  bypass: "&7&lYou cannot be eliminated."
+  all-eliminated: "&c&lEliminated every online player."
+  list-header: "&c&lEliminated players:"
+  list-empty: "&aNo one is eliminated."
+  list-entry: "&c- ${player}"
+
+revive:
+  success: "&a&lYou revived &e${player}&a&l!"
+  all-revived: "&a&lRevived &e${amount}x &a&lplayer(s)."
+  not-needed: "&c&l${player} is not eliminated."
+
+reset:
+  done: "&f&lReset &e${player}&f&l's hearts."
+  all-done: "&f&lReset every player's hearts."
+
+withdraw:
+  disabled: "&c&lHeart withdrawal is disabled."
+  not-enough: "&c&lYou don't have enough hearts to withdraw."
+  feature-disabled: "&c&lThis feature is disabled."
+
+combat-logger:
+  tagged: "&c&lYou are now in combat! Do not log out."
+  untagged: "&a&lYou are no longer in combat."
+  blocked-command: "&c&lYou can't use &e/${command} &c&lwhile in combat."
+  logged-out: "&c&l${player} &4&lcombat-logged and was killed!"
+
+leaderboard:
+  title: "&c&lHeart Top"
+  empty: "&7No data yet."
+  entry: "&c${rank}. &f${player} &7- &c${hearts}x"
+  prev-page: "&a&l← Previous"
+  next-page: "&a&lNext →"
+  page-info: "&7Page ${page}/${maxPage}"
+
+reload:
+  config: "&aConfig reloaded."
+  recipes: "&aRecipes reloaded."
+
+security:
+  alt-farming: "&c&lOur system detected that &e${killed}&c&l is a second account. No hearts were transferred."
+
+general:
+  no-permission: "&c&lYou don't have permission."
+  player-only: "&c&lOnly players can use this."
+  player-not-found: "&c&lPlayer not found."
+  player-offline: "&c&l${player} is not online."
+  usage: "&7Usage: &f${usage}"
+  unknown-subcommand: "&c&lUnknown subcommand. &7Use &f/ls help&7."
+  feature-disabled: "&c&lThis feature is disabled."
+  number-expected: "&c&lExpected a number."
+  help-header: "&c&l&nLifeSteal &7- Commands"
+  help-line: "&c/ls ${cmd} &7- ${desc}"
+  version: "&cLifeSteal &7v${version} &7by &claynermc"

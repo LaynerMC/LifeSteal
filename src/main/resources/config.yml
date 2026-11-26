@@ -1,0 +1,203 @@
+# ============================================================
+#  LifeSteal 1.0.0 - by laynermc
+#  Multi-version LifeSteal SMP plugin (1.8.8 - 26.3)
+#  All messages are editable in messages.yml
+#  Any message set to '' is silenced (not sent).
+# ============================================================
+
+# ------------------------------------------------------------
+#  Heart System
+# ------------------------------------------------------------
+hearts:
+  # Hearts every new player starts with (1 heart = 2 HP).
+  starting: 10
+  # Lowest value a player can reach before being eliminated.
+  minimum: 0
+  # Global heart cap. -1 = unlimited.
+  maximum: 25
+  # Hearts transferred from the victim to the killer on a PvP kill.
+  steal-amount: 1
+  # Hearts lost by the victim on death (only when killed by a player, see below).
+  loss-amount: 1
+  # If true, hearts are only lost when the killer is another player.
+  # If false, the victim loses a heart on any death.
+  lose-only-if-killed-by-player: false
+  # If true, no heart is transferred/lost when a player kills themselves.
+  self-kill-protection: true
+
+# ------------------------------------------------------------
+#  Elimination (ban on 0 hearts)
+# ------------------------------------------------------------
+elimination:
+  # Eliminate (ban) players when they reach the minimum hearts.
+  enabled: true
+  # Kick and block eliminated players from rejoining.
+  block-rejoin: true
+  # Server-wide broadcast when someone is eliminated.
+  broadcast: true
+  # Ban duration in minutes. 0 = permanent.
+  ban-time: 0
+  # Hearts a revived player gets back.
+  revive-heart-amount: 10
+
+# ------------------------------------------------------------
+#  Heart Item (+1 heart on consume, with success chance)
+# ------------------------------------------------------------
+heart-item:
+  enabled: true
+  material: "NETHER_STAR"
+  name: "&c&lHeart"
+  lore:
+    - "&6Consuming this grants you an extra heart!"
+    - "&7&oYou have &e${chance}%&7&o chance to gain an additional heart."
+  # % chance the item actually grants a heart when consumed.
+  success-chance: 100
+  # On failure, % chance to LOSE a heart instead (0 = nothing happens).
+  lose-chance: 50
+  # Hard cap on hearts gained from this item alone. 0 = no extra limit.
+  add-limit: 0
+  withdraw-enabled: true
+
+# ------------------------------------------------------------
+#  Revive Tome (revives an eliminated player via GUI)
+# ------------------------------------------------------------
+revive-tome:
+  enabled: true
+  material: "ENCHANTED_BOOK"
+  name: "&c&lRevive Tome"
+  lore:
+    - "&6Right-click to open the revival menu."
+  menu-title: "&a&lRevive a player"
+  skull-lore:
+    - "&aClick the head to revive."
+  consume-on-use: true
+
+# ------------------------------------------------------------
+#  Crafting Recipes (shaped, 3x3 grids)
+#  item: heart_item or revive_tome
+# ------------------------------------------------------------
+recipes:
+  enabled: true
+  heart_item:
+    enabled: true
+    items:
+      - "GOLD_BLOCK"
+      - "GOLD_BLOCK"
+      - "GOLD_BLOCK"
+      - "GOLD_BLOCK"
+      - "NETHER_STAR"
+      - "GOLD_BLOCK"
+      - "GOLD_BLOCK"
+      - "GOLD_BLOCK"
+      - "GOLD_BLOCK"
+  revive_tome:
+    enabled: true
+    items:
+      - "NETHERITE_INGOT"
+      - "NETHERITE_INGOT"
+      - "NETHERITE_INGOT"
+      - "NETHERITE_INGOT"
+      - "ENCHANTED_BOOK"
+      - "NETHERITE_INGOT"
+      - "NETHERITE_INGOT"
+      - "NETHERITE_INGOT"
+      - "NETHERITE_INGOT"
+
+# ------------------------------------------------------------
+#  Combat Logger
+# ------------------------------------------------------------
+combat-logger:
+  enabled: true
+  # Seconds a player stays tagged after dealing/taking PvP damage.
+  duration: 10
+  # Kill and drop the inventory of players who log out while tagged.
+  kill-on-logout: true
+  broadcast: true
+  # How the countdown is shown to tagged players: BOSSBAR | ACTIONBAR | CHAT | NONE
+  display: "BOSSBAR"
+  bossbar-color: "RED"
+  bossbar-style: "SOLID"
+  # Commands blocked while in combat (checked by lower-cased label).
+  blocked-commands:
+    - "home"
+    - "tp"
+    - "tpa"
+    - "warp"
+    - "spawn"
+    - "back"
+    - "rtp"
+    - "hub"
+    - "lobby"
+    - "tpaccept"
+    - "tpahere"
+
+# ------------------------------------------------------------
+#  Leaderboard (/hearttop)
+# ------------------------------------------------------------
+leaderboard:
+  enabled: true
+  menu-title: "&c&lHeart Top &7&l(_PAGE_/_MAX_)"
+  page-size: 45
+
+# ------------------------------------------------------------
+#  Display (persistent heart info while playing)
+# ------------------------------------------------------------
+display:
+  # NONE | ACTIONBAR | SCOREBOARD
+  mode: "NONE"
+  # Seconds between refresh ticks (actionbar/scoreboard).
+  interval: 5
+  actionbar-text: "&cHearts &f${hearts}&7/&e${max} &7| &aK:${kills} &cD:${deaths}"
+  scoreboard:
+    title: "&c&lLifeSteal"
+    lines:
+      - "&7Hearts:"
+      - " &c${hearts}/${max}"
+      - "&7Kills:"
+      - " &a${kills}"
+      - "&7Deaths:"
+      - " &c${deaths}"
+
+# ------------------------------------------------------------
+#  Effects (sounds & particles). Names are version-safe:
+#  missing names are skipped automatically.
+# ------------------------------------------------------------
+effects:
+  heart-gained:
+    sound: "ENTITY_PLAYER_LEVELUP"
+    particle: "HEART"
+  heart-lost:
+    sound: "ENTITY_LIGHTNING_BOLT_THUNDER"
+    particle: "VILLAGER_ANGRY"
+  eliminated:
+    sound: "ENTITY_WITHER_DEATH"
+    particle: "LARGE_SMOKE"
+  revived:
+    sound: "UI_TOAST_CHALLENGE_COMPLETE"
+    particle: "TOTEM"
+  combat-tag:
+    sound: "BLOCK_ANVIL_LAND"
+    particle: ""
+  withdraw:
+    sound: "ENTITY_PLAYER_LEVELUP"
+    particle: ""
+
+# ------------------------------------------------------------
+#  Security (anti alt-farming)
+# ------------------------------------------------------------
+security:
+  alt-farming:
+    # When true, a kill is ignored if killer and victim share the same IP
+    # (ignored if the killer holds lifesteal.bypass.altfarming).
+    ip-check: false
+
+# ------------------------------------------------------------
+#  Custom commands (run by console on events). %player% / %killer% supported.
+#  mode: disabled | enabled (only custom) | both (custom + built-in)
+# ------------------------------------------------------------
+custom-commands:
+  mode: "disabled"
+  on-eliminate:
+    - "tellraw @a {\"text\":\"${player} was eliminated!\"}"
+  on-revive:
+    - "tellraw @a {\"text\":\"${revived} was revived by ${reviving}!\"}"

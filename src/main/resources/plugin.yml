@@ -1,0 +1,97 @@
+name: LifeSteal
+version: '${project.version}'
+main: dev.laynermc.lifesteal.LifeStealPlugin
+api-version: '1.13'
+authors: [ laynermc ]
+description: Multi-version LifeSteal SMP plugin. Steal hearts, eliminate rivals, revive with tomes, combat logger, leaderboard.
+website: https://github.com/laynermc
+
+commands:
+  lifesteal:
+    description: LifeSteal main command.
+    aliases: [ ls, lsteam ]
+    usage: |
+      /lifesteal help
+  hearttop:
+    description: Show the heart leaderboard.
+    usage: /hearttop
+
+permissions:
+  lifesteal.*:
+    description: All LifeSteal permissions.
+    default: op
+    children:
+      lifesteal.admin: true
+      lifesteal.withdraw: true
+      lifesteal.bypass.elimination: true
+      lifesteal.bypass.heartcap: true
+      lifesteal.bypass.combatlog: true
+      lifesteal.bypass.altfarming: true
+  lifesteal.admin:
+    description: Full admin access.
+    default: op
+    children:
+      lifesteal.reload: true
+      lifesteal.health: true
+      lifesteal.setmaxheart: true
+      lifesteal.eliminate: true
+      lifesteal.eliminateall: true
+      lifesteal.revive: true
+      lifesteal.reviveall: true
+      lifesteal.reset: true
+      lifesteal.resetall: true
+      lifesteal.give: true
+      lifesteal.bans: true
+  lifesteal.reload:
+    description: Reload configuration.
+    default: op
+  lifesteal.health:
+    description: Manage player hearts.
+    default: op
+    children:
+      lifesteal.health.get: true
+      lifesteal.health.set: true
+      lifesteal.health.add: true
+      lifesteal.health.remove: true
+  lifesteal.setmaxheart:
+    description: Set a player's personal max heart cap.
+    default: op
+  lifesteal.eliminate:
+    description: Eliminate a player.
+    default: op
+  lifesteal.eliminateall:
+    description: Eliminate all players.
+    default: op
+  lifesteal.revive:
+    description: Revive a player.
+    default: op
+  lifesteal.reviveall:
+    description: Revive all eliminated players.
+    default: op
+  lifesteal.reset:
+    description: Reset a player's hearts.
+    default: op
+  lifesteal.resetall:
+    description: Reset every player's hearts.
+    default: op
+  lifesteal.give:
+    description: Give LifeSteal items.
+    default: op
+  lifesteal.bans:
+    description: Manage the elimination list.
+    default: op
+  lifesteal.withdraw:
+    description: Withdraw hearts into an item.
+    default: true
+  lifesteal.bypass.elimination:
+    description: Never get eliminated.
+    default: false
+  lifesteal.bypass.heartcap:
+    description: Ignore the global heart cap.
+    default: false
+  lifesteal.bypass.combatlog:
+    description: Ignore the combat logger.
+    default: false
+  lifesteal.bypass.altfarming:
+    description: Bypass the alt-farming IP check.
+    default: false
